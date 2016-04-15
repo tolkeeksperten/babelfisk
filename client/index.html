@@ -2,6 +2,7 @@
 <html lang="en" ng-app="babelfisk">
   <head>
     <title>Babelfisk</title>
+    <link rel="stylesheet" href="/css/babelfisk.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
     <script src="/socket.io/socket.io.js"></script>
@@ -13,10 +14,7 @@
       app.controller('userCtrl', function($scope) {
         var socket = io.connect();
         
-        $scope.firstName = '';
-        $scope.lastName = '';
-        $scope.phoneNumber = '';
-        $scope.email = '';
+        $scope.user = {};
         $scope.invalid = true;
         
         socket.on('connect', function() {
@@ -25,15 +23,13 @@
 
         socket.on('user', function(user) {
           $scope.$apply(function() {
-            $scope.firstName = user.firstName;
-            $scope.lastName = user.lastName;
-            $scope.phoneNumber = user.phoneNumber;
-            $scope.email = user.email;
+            $scope.user = user;
+            $scope.invalid = false;
           });
         });
 
-        $scope.send = function send() {
-          // TODO
+        $scope.update = function send() {
+          socket.emit('updateUser', $scope.user);
         };
       });
     </script>
@@ -47,7 +43,7 @@
           </div>
         </div>
       </div>
-      <div class="page-header">
+      <div class="page-header bf-title">
         <h1>Babelfisk</h1>
       </div>
       <div class="row">
@@ -56,25 +52,25 @@
             <tbody>
               <tr>
                 <td class="span2">First Name</td>
-                <td class="span2"><input type="text" class="form-control" ng-model="firstName" /></td>
+                <td class="span2"><input type="text" class="form-control" ng-model="user.name.firstName" /></td>
               </tr>
               <tr>
                 <td class="span2">Last Name</td>
-                <td class="span2"><input type="text" class="form-control" ng-model="lastName" /></td>
+                <td class="span2"><input type="text" class="form-control" ng-model="user.name.lastName" /></td>
               </tr>
               <tr>
                 <td class="span2">Phone Number:</td>
-                <td class="span2"><input type="text" class="form-control" ng-model="phoneNumber" /></td>
+                <td class="span2"><input type="text" class="form-control" ng-model="user.phoneNumber" /></td>
               </tr>
               <tr>
                 <td class="span2">Email:</td>
-                <td class="span2"><input type="text" class="form-control" ng-model="email" /></td>
+                <td class="span2"><input type="text" class="form-control" ng-model="user.email" /></td>
               </tr>
             </tbody>
           </table>
           <div class="row controls">
-            <form ng-submit="send()">
-              <input type="submit" class="span1 btn btn-primary pull-right" value="Add" ng-disabled="invalid">
+            <form ng-submit="update()">
+              <input type="submit" class="span2 btn btn-primary pull-right" value="Update" ng-disabled="invalid">
             </form>
           </div>
         </div>

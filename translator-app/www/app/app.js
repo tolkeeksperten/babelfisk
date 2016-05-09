@@ -17,8 +17,17 @@ angular.module('translatorApp', ['ionic'])
       // a much nicer keyboard experience.
       cordova.plugins.Keyboard.disableScroll(true);
     }
+    
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
   });
 })
+.config(function($stateProvider, $urlRouterProvider){
+  $stateProvider.state('home', {
+    url: '/home',
+    templateUrl: 'app/home/home.html'
+  });
+  
+  $urlRouterProvider.otherwise('/home');
+});

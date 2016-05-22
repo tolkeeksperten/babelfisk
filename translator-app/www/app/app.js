@@ -25,6 +25,10 @@ angular.module('translatorApp', ['ionic'])
 })
 .config(function($stateProvider, $urlRouterProvider){
   $stateProvider
+  .state('login', {
+    url: '/login',
+    templateUrl: 'app/login/login.html'
+  })
   .state('home', {
     url: '/home',
     templateUrl: 'app/home/home.html'
@@ -34,5 +38,5 @@ angular.module('translatorApp', ['ionic'])
     templateUrl: 'app/layout/menu-layout.html'
   });
   
-  $urlRouterProvider.otherwise('/app');
+  $urlRouterProvider.otherwise('/login');
 });

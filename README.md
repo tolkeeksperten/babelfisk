@@ -19,6 +19,7 @@ Start the app:
 -------------
 
 $ cd translator-app
+$ lessc .\www\css\style.less  .\www\css\style.css
 $ ionic serve -p $PORT --nolivereload
 
 When you are asked which address to serve the app on, chose 1 for the numbered IP address (don’t choose localhost).

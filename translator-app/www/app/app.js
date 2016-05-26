@@ -29,6 +29,10 @@ angular.module('translatorApp', ['ionic'])
     url: '/login',
     templateUrl: 'app/login/login.html'
   })
+  .state('signup', {
+    url: '/signup',
+    templateUrl: 'app/login/signup.html'
+  })
   .state('home', {
     url: '/home',
     templateUrl: 'app/home/home.html'

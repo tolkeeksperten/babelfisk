@@ -10,6 +10,7 @@
     "cordova": "^6.1.1",
     "express": "~3.2.4",
     "ionic": "^1.7.14",
+    "less": "^2.7.1",
     "lodash": "^4.11.1",
     "mongoose": "^4.4.12",
     "socket.io": "~0.9.14"

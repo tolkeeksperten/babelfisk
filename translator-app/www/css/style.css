@@ -1,1 +1,6 @@
-/* Empty. Add your own CSS if you like */
+.color-calm {
+  color: #11c1f3;
+}
+list.list-borderless > .item {
+  border-width: 0;
+}
